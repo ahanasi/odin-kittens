@@ -15,7 +15,9 @@ class KittensController < ApplicationController
     @kitten = Kitten.new(kitten_params)
     if @kitten.save
       redirect_to @kitten
+      flash[:notice] = "#{@kitten.name} the kitten has been created!"
     else
+      flash.now[:alert] = "You have to fill out all fields!"
       render 'new'
     end
   end
@@ -27,13 +29,15 @@ class KittensController < ApplicationController
   def update
     @kitten = Kitten.find(params[:id])
     @kitten.update!(kitten_params)
+    flash[:notice] = "#{@kitten.name} the kitten has been edited!"
     redirect_to @kitten
   end
 
   def destroy
     @kitten = Kitten.find(params[:id])
     @kitten.destroy
-    redirect_to @kittens
+    flash[:notice] = "#{@kitten.name} the kitten has been destroyed :("
+    redirect_to kittens_path
   end
 
   private

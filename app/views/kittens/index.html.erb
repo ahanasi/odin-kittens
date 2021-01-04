@@ -1,0 +1,5 @@
+<div style="text-align: center; margin: auto; width: 50%; border: 3px solid green; padding: 10px;">
+    <% @kittens.each do |kitten| %>
+        <p><%= kitten.name %>, <%= kitten.age %>, <%= kitten.cuteness %>, <%= kitten.softness %> <%= link_to "Delete", kitten_path(kitten), :confirm => "Are you sure?", :method => :delete %></p>
+    <% end %>
+</div>
